@@ -12,3 +12,9 @@ TODO:
         - dosis
         - arm
         - applied?
+
+
+# To start local server
+```
+python3 -m http.server 8000
+```

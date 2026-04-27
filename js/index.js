@@ -10,15 +10,8 @@ function clearDb() {
     request.addEventListener('error', () => console.error(request.error));
 }
 
-function insertOne() {
+function insertOne(record) {
     const objectStore = db.transaction(['shots_os'], 'readwrite').objectStore('shots_os');
-    const record = {
-        id: 3,
-        date: new Date(),
-        dose: 20,
-        arm: 'Izquierdo',
-        applied: false
-    };
     const request = objectStore.add(record);
     request.addEventListener('success', () => console.log('Record added to the shots db.'));
     request.addEventListener('error', () => console.error(request.error));
@@ -32,7 +25,6 @@ function display(rowObj) {
 
     const dateCell = document.createElement('td');
     dateCell.textContent = new Date(rowObj.date).toISOString().slice(0,10);
-    // dateCell.textContent = rowObj.date;
 
     const doseCell = document.createElement('td');
     doseCell.textContent = rowObj.dose;
@@ -87,7 +79,24 @@ request.addEventListener('error', () => console.error('Database failed to open')
 request.addEventListener('success', () => {
     console.log('Database opened successfully');
     db = request.result;
-    insertOne();
+    const record = {
+        id: 1,
+        date: new Date(),
+        dose: 20,
+        arm: 'Izquierdo',
+        applied: false
+    };
+    insertOne(record);
+    
+    const record2 = {
+        id: 2,
+        date: new Date(),
+        dose: 21,
+        arm: 'Derecho',
+        applied: false
+    };
+    insertOne(record2);
+
     init();
 });
 
