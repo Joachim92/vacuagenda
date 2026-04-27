@@ -58,10 +58,21 @@ tbody tr:hover {
 #add-row-container {
     display: flex;
     justify-content: center;
+    gap: 20px;
     max-width: 800px;
     margin: 8px auto 0;
+    transition: opacity 0.8s ease;
 }
 
+#add-row-container.autohide {
+    opacity: 0;
+}
+
+#add-row-container.autohide button {
+    pointer-events: none;
+}
+
+#delete-row-btn,
 #add-row-btn {
     width: 36px;
     height: 36px;
@@ -74,10 +85,12 @@ tbody tr:hover {
     cursor: pointer;
 }
 
+#delete-row-btn:hover,
 #add-row-btn:hover {
     background-color: #024d44;
 }
 
+#delete-row-btn:active,
 #add-row-btn:active {
     background-color: #013830;
 }

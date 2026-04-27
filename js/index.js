@@ -142,6 +142,33 @@ function handleTableClick(e) {
     }
 }
 
+function deleteRow() {
+    const tbody = document.querySelector('#shots_table tbody');
+    const lastRow = tbody.lastElementChild;
+    if (!lastRow) return;
+    const id = Number(lastRow.dataset.id);
+    tbody.removeChild(lastRow);
+    db.transaction(['shots_os'], 'readwrite').objectStore('shots_os').delete(id);
+}
+
+function setupAutohide() {
+    const container = document.getElementById('add-row-container');
+    let hideTimer;
+
+    function scheduleHide() {
+        hideTimer = setTimeout(() => container.classList.add('autohide'), 2000);
+    }
+
+    container.addEventListener('mouseenter', () => {
+        clearTimeout(hideTimer);
+        container.classList.remove('autohide');
+    });
+
+    container.addEventListener('mouseleave', scheduleHide);
+
+    scheduleHide();
+}
+
 function addRow() {
     const record = {
         id: Date.now(),
@@ -180,7 +207,9 @@ request.addEventListener('success', () => {
     console.log('Database opened successfully');
     db = request.result;
     document.getElementById('add-row-btn').addEventListener('click', addRow);
+    document.getElementById('delete-row-btn').addEventListener('click', deleteRow);
     document.getElementById('shots_table').addEventListener('click', handleTableClick);
+    setupAutohide();
     init();
 });
 
