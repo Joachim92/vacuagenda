@@ -54,3 +54,42 @@ tbody tr:hover {
     color: red;
     font-weight: bold;
 }
+
+#add-row-container {
+    display: flex;
+    justify-content: center;
+    max-width: 800px;
+    margin: 8px auto 0;
+}
+
+#add-row-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 24px;
+    line-height: 1;
+    background-color: #036c5f;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#add-row-btn:hover {
+    background-color: #024d44;
+}
+
+#add-row-btn:active {
+    background-color: #013830;
+}
+
+.cell-edit-input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #036c5f;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    text-align: center;
+    padding: 0;
+}
