@@ -36,7 +36,9 @@ function display(rowObj) {
 
     const dateCell = document.createElement('td');
     dateCell.dataset.col = 'date';
-    dateCell.textContent = new Date(rowObj.date).toISOString().slice(0,10);
+    dateCell.textContent = new Date(rowObj.date)                                                                                        
+      .toLocaleDateString('es-MX', { day: '2-digit', month: 'long', year: 'numeric' })                                                
+      .replace(/ de /g, '-');
 
     const doseCell = document.createElement('td');
     doseCell.dataset.col = 'dose';
