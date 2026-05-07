@@ -12,6 +12,35 @@
     <body>
         <h1>Bitacora</h1>
 
+        <section id="setup-form-container">
+            <form id="setup-form">
+                <h2>Configuración inicial</h2>
+
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="time_between_shots">¿Cada cuántos días te aplicas las vacunas?</label>
+                <input type="number" id="time_between_shots" name="time_between_shots" min="1" required>
+
+                <label for="initial_arm">Brazo de la primer vacuna</label>
+                <input type="text" id="initial_arm" name="initial_arm" required>
+
+                <label for="initial_dose">Dosis inicial (mínima)</label>
+                <input type="number" id="initial_dose" name="initial_dose" step="any" required>
+
+                <label for="dose_increase">¿Cuánto incrementa la dosis cada vez?</label>
+                <input type="number" id="dose_increase" name="dose_increase" step="any" required>
+
+                <label for="last_dose">Dosis final (máxima)</label>
+                <input type="number" id="last_dose" name="last_dose" step="any" required>
+
+                <label for="treatment_duration">Duración del tratamiento (días)</label>
+                <input type="number" id="treatment_duration" name="treatment_duration" min="1" required>
+
+                <button type="submit">Guardar</button>
+            </form>
+        </section>
+
         <table id="shots_table">
             <thead>
                 <tr>

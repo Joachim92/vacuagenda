@@ -107,6 +107,76 @@ tbody tr:hover {
     padding: 0;
 }
 
+#shots_table,
+#add-row-container {
+    display: none;
+}
+
+#setup-form-container {
+    display: none;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+#setup-form {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+#setup-form h2 {
+    margin: 0 0 20px;
+    text-align: center;
+    color: #036c5f;
+}
+
+#setup-form label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 16px;
+    margin-bottom: 4px;
+}
+
+#setup-form label:first-of-type {
+    margin-top: 0;
+}
+
+#setup-form input {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+#setup-form input:focus {
+    outline: none;
+    border-color: #036c5f;
+}
+
+#setup-form button[type="submit"] {
+    margin-top: 8px;
+    padding: 10px;
+    background-color: #036c5f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#setup-form button[type="submit"]:hover {
+    background-color: #024d44;
+}
+
 @media (max-width: 600px) {
     body {
         margin: 0;

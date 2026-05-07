@@ -1,5 +1,38 @@
 let db;
 
+function initSetupForm() {
+    const formContainer = document.getElementById('setup-form-container');
+    const table = document.getElementById('shots_table');
+    const addRowContainer = document.getElementById('add-row-container');
+
+    if (localStorage.getItem('vacuagenda_config')) {
+        table.style.display = 'table';
+        addRowContainer.style.display = 'flex';
+        return;
+    }
+
+    formContainer.style.display = 'flex';
+
+    document.getElementById('setup-form').addEventListener('submit', e => {
+        e.preventDefault();
+        const form = e.target;
+        const config = {
+            name: form.name.value,
+            time_between_shots: Number(form.time_between_shots.value),
+            initial_arm: form.initial_arm.value,
+            initial_dose: Number(form.initial_dose.value),
+            dose_increase: Number(form.dose_increase.value),
+            last_dose: Number(form.last_dose.value),
+            treatment_duration: Number(form.treatment_duration.value),
+        };
+        localStorage.setItem('vacuagenda_config', JSON.stringify(config));
+        console.log('vacuagenda_config:', config);
+        formContainer.style.display = 'none';
+        table.style.display = 'table';
+        addRowContainer.style.display = 'flex';
+    });
+}
+
 function clearDb() {
     const objectStore = db.transaction(['shots_os'], 'readwrite').objectStore('shots_os');
     const request = objectStore.clear();
@@ -208,6 +241,7 @@ request.addEventListener('error', () => console.error('Database failed to open')
 request.addEventListener('success', () => {
     console.log('Database opened successfully');
     db = request.result;
+    initSetupForm();
     document.getElementById('add-row-btn').addEventListener('click', addRow);
     document.getElementById('delete-row-btn').addEventListener('click', deleteRow);
     document.getElementById('shots_table').addEventListener('click', handleTableClick);
