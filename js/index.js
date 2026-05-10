@@ -85,8 +85,13 @@ function updateRecord(id, field, value) {
 function display(rowObj) {
     const tbody = document.querySelector('#shots_table tbody');
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     const row = document.createElement('tr');
     row.dataset.id = rowObj.id;
+    row.dataset.date = new Date(rowObj.date).toISOString();
+    if (new Date(rowObj.date) < today && !rowObj.applied) row.classList.add('missed');
 
     const dateCell = document.createElement('td');
     dateCell.dataset.col = 'date';
@@ -170,13 +175,18 @@ function startEdit(cell, id, col) {
 function toggleApplied(cell, id) {
     const newValue = !cell.classList.contains('applied-yes');
     const img = cell.querySelector('img');
+    const row = cell.closest('tr');
 
     if (newValue) {
         cell.classList.replace('applied-no', 'applied-yes');
         img.src = 'assets/checked.svg';
+        row.classList.remove('missed');
     } else {
         cell.classList.replace('applied-yes', 'applied-no');
         img.src = 'assets/unchecked.svg';
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        if (new Date(row.dataset.date) < today) row.classList.add('missed');
     }
 
     updateRecord(id, 'applied', newValue);

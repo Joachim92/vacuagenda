@@ -55,6 +55,10 @@ tbody tr:hover {
     font-weight: bold;
 }
 
+tr.missed td {
+    color: #999;
+}
+
 #add-row-container {
     display: flex;
     justify-content: center;
