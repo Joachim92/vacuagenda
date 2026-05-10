@@ -7,6 +7,7 @@ function initSetupForm() {
     const addRowContainer = document.getElementById('add-row-container');
 
     if (localStorage.getItem('vacuagenda_config')) {
+        document.getElementById('table-tabs').style.display = 'flex';
         table.style.display = 'table';
         addRowContainer.style.display = 'flex';
         return;
@@ -29,6 +30,7 @@ function initSetupForm() {
         localStorage.setItem('vacuagenda_config', JSON.stringify(config));
         generateInitialTable(config);
         formContainer.style.display = 'none';
+        document.getElementById('table-tabs').style.display = 'flex';
         table.style.display = 'table';
         addRowContainer.style.display = 'flex';
     });
@@ -83,7 +85,7 @@ function updateRecord(id, field, value) {
 
 // rowObj { id, date, dose, arm, applied }
 function display(rowObj) {
-    const tbody = document.querySelector('#shots_table tbody');
+    const tbody = document.querySelector(rowObj.applied ? '#applied_shots_table tbody' : '#shots_table tbody');
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -172,6 +174,17 @@ function startEdit(cell, id, col) {
     input.addEventListener('blur', commit);
 }
 
+function insertRowSorted(tbody, row) {
+    const id = Number(row.dataset.id);
+    for (const existing of tbody.querySelectorAll('tr')) {
+        if (Number(existing.dataset.id) > id) {
+            tbody.insertBefore(row, existing);
+            return;
+        }
+    }
+    tbody.appendChild(row);
+}
+
 function toggleApplied(cell, id) {
     const newValue = !cell.classList.contains('applied-yes');
     const img = cell.querySelector('img');
@@ -181,12 +194,14 @@ function toggleApplied(cell, id) {
         cell.classList.replace('applied-no', 'applied-yes');
         img.src = 'assets/checked.svg';
         row.classList.remove('missed');
+        insertRowSorted(document.querySelector('#applied_shots_table tbody'), row);
     } else {
         cell.classList.replace('applied-yes', 'applied-no');
         img.src = 'assets/unchecked.svg';
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         if (new Date(row.dataset.date) < today) row.classList.add('missed');
+        insertRowSorted(document.querySelector('#shots_table tbody'), row);
     }
 
     updateRecord(id, 'applied', newValue);
@@ -273,6 +288,30 @@ request.addEventListener('success', () => {
     document.getElementById('add-row-btn').addEventListener('click', addRow);
     document.getElementById('delete-row-btn').addEventListener('click', deleteRow);
     document.getElementById('shots_table').addEventListener('click', handleTableClick);
+    document.getElementById('applied_shots_table').addEventListener('click', handleTableClick);
+
+    const tabPending = document.getElementById('tab-pending');
+    const tabApplied = document.getElementById('tab-applied');
+    const pendingTable = document.getElementById('shots_table');
+    const appliedTable = document.getElementById('applied_shots_table');
+
+    const addRowContainer = document.getElementById('add-row-container');
+
+    tabPending.addEventListener('click', () => {
+        tabPending.classList.add('active');
+        tabApplied.classList.remove('active');
+        pendingTable.style.display = 'table';
+        appliedTable.style.display = 'none';
+        addRowContainer.style.display = 'flex';
+    });
+
+    tabApplied.addEventListener('click', () => {
+        tabApplied.classList.add('active');
+        tabPending.classList.remove('active');
+        appliedTable.style.display = 'table';
+        pendingTable.style.display = 'none';
+        addRowContainer.style.display = 'none';
+    });
     document.getElementById('reset-btn').addEventListener('click', () => {
         clearDb();
         localStorage.removeItem('vacuagenda_config');
