@@ -10,7 +10,9 @@
     </head>
 
     <body>
-        <h1>Bitacora</h1>
+        <h1>VacuAgenda</h1>
+
+        <label id="greeting">Hola </label>
 
         <section id="setup-form-container">
             <form id="setup-form">
@@ -76,7 +78,18 @@
 
         <div id="reset-container">
             <p></p>
-            <button id="reset-btn">Reiniciar configuración</button>
+            <button id="reset-btn">Borrar datos</button>
+        </div>
+
+        <div id="reset-modal" role="dialog" aria-modal="true">
+            <div id="reset-modal-box">
+                <h3>¿Estás seguro?</h3>
+                <p>Esta acción borrará todos los datos del tratamiento. No hay forma de recuperarlos.</p>
+                <div id="reset-modal-actions">
+                    <button id="reset-cancel-btn">Cancelar</button>
+                    <button id="reset-confirm-btn">Sí, borrar todo</button>
+                </div>
+            </div>
         </div>
     </body>
 </html>

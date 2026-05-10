@@ -10,6 +10,7 @@ function initSetupForm() {
         document.getElementById('table-tabs').style.display = 'flex';
         table.style.display = 'table';
         addRowContainer.style.display = 'flex';
+        document.getElementById('reset-container').style.display = 'block';
         return;
     }
 
@@ -33,6 +34,7 @@ function initSetupForm() {
         document.getElementById('table-tabs').style.display = 'flex';
         table.style.display = 'table';
         addRowContainer.style.display = 'flex';
+        document.getElementById('reset-container').style.display = 'block';
     });
 }
 
@@ -297,12 +299,15 @@ request.addEventListener('success', () => {
 
     const addRowContainer = document.getElementById('add-row-container');
 
+    const resetContainer = document.getElementById('reset-container');
+
     tabPending.addEventListener('click', () => {
         tabPending.classList.add('active');
         tabApplied.classList.remove('active');
         pendingTable.style.display = 'table';
         appliedTable.style.display = 'none';
         addRowContainer.style.display = 'flex';
+        resetContainer.style.display = 'block';
     });
 
     tabApplied.addEventListener('click', () => {
@@ -311,8 +316,16 @@ request.addEventListener('success', () => {
         appliedTable.style.display = 'table';
         pendingTable.style.display = 'none';
         addRowContainer.style.display = 'none';
+        resetContainer.style.display = 'none';
     });
+    const resetModal = document.getElementById('reset-modal');
     document.getElementById('reset-btn').addEventListener('click', () => {
+        resetModal.classList.add('open');
+    });
+    document.getElementById('reset-cancel-btn').addEventListener('click', () => {
+        resetModal.classList.remove('open');
+    });
+    document.getElementById('reset-confirm-btn').addEventListener('click', () => {
         clearDb();
         localStorage.removeItem('vacuagenda_config');
         location.reload();

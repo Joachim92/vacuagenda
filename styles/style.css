@@ -114,7 +114,8 @@ tr.missed td {
 #shots_table,
 #applied_shots_table,
 #table-tabs,
-#add-row-container {
+#add-row-container,
+#reset-container {
     display: none;
 }
 
@@ -236,15 +237,87 @@ tr.missed td {
 
 #reset-btn {
     background: none;
-    border: none;
-    color: #aaa;
+    border: 1px solid #c0392b;
+    border-radius: 4px;
+    color: #c0392b;
     font-size: 12px;
+    padding: 6px 14px;
     cursor: pointer;
-    text-decoration: underline;
 }
 
 #reset-btn:hover {
-    color: #666;
+    background: #c0392b;
+    color: #fff;
+}
+
+#reset-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+}
+
+#reset-modal.open {
+    display: flex;
+}
+
+#reset-modal-box {
+    background: #fff;
+    border-radius: 8px;
+    padding: 28px 32px;
+    max-width: 360px;
+    width: 90%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+#reset-modal-box h3 {
+    margin: 0 0 12px;
+    font-size: 18px;
+    color: #c0392b;
+}
+
+#reset-modal-box p {
+    margin: 0 0 24px;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+}
+
+#reset-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+#reset-cancel-btn {
+    padding: 8px 16px;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #555;
+}
+
+#reset-cancel-btn:hover {
+    background: #f0f0f0;
+}
+
+#reset-confirm-btn {
+    padding: 8px 16px;
+    background: #c0392b;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #fff;
+}
+
+#reset-confirm-btn:hover {
+    background: #a93226;
 }
 
 @media (max-width: 600px) {
