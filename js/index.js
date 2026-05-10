@@ -1,4 +1,5 @@
 let db;
+let nextId = 0;
 
 function initSetupForm() {
     const formContainer = document.getElementById('setup-form-container');
@@ -12,6 +13,7 @@ function initSetupForm() {
     }
 
     formContainer.style.display = 'flex';
+    document.getElementById('treatment_start_date').value = new Date().toISOString().slice(0, 10);
 
     document.getElementById('setup-form').addEventListener('submit', e => {
         e.preventDefault();
@@ -20,16 +22,36 @@ function initSetupForm() {
             name: form.name.value,
             time_between_shots: Number(form.time_between_shots.value),
             initial_arm: form.initial_arm.value,
-            initial_dose: Number(form.initial_dose.value),
-            dose_increase: Number(form.dose_increase.value),
-            last_dose: Number(form.last_dose.value),
+            treatment_start_date: form.treatment_start_date.value,
+            dose: Number(form.dose.value),
             treatment_duration: Number(form.treatment_duration.value),
         };
         localStorage.setItem('vacuagenda_config', JSON.stringify(config));
+        generateInitialTable(config);
         formContainer.style.display = 'none';
         table.style.display = 'table';
         addRowContainer.style.display = 'flex';
     });
+}
+
+function generateInitialTable(config) {
+    const count = Math.ceil(config.treatment_duration / config.time_between_shots);
+    const alternateArm = config.initial_arm === 'Izquierdo' ? 'Derecho' : 'Izquierdo';
+    const start = new Date(config.treatment_start_date + 'T00:00:00');
+
+    for (let i = 0; i < count; i++) {
+        const date = new Date(start);
+        date.setDate(start.getDate() + i * config.time_between_shots);
+        const record = {
+            id: nextId++,
+            date,
+            dose: config.dose,
+            arm: i % 2 === 0 ? config.initial_arm : alternateArm,
+            applied: false,
+        };
+        insertOne(record);
+        display(record);
+    }
 }
 
 function clearDb() {
@@ -205,7 +227,7 @@ function setupAutohide() {
 
 function addRow() {
     const record = {
-        id: Date.now(),
+        id: nextId++,
         date: new Date(),
         dose: 0,
         arm: '',
@@ -220,15 +242,12 @@ function init() {
     const request = objectStore.getAll();
 
     request.addEventListener('success', () => {
-        if (request.result) {
-            console.log("The db has values!");
-            let arr = request.result;
-            for (const elem in arr) {
-                console.log(arr[elem]);
-                display(arr[elem]);
+        const arr = request.result;
+        if (arr.length > 0) {
+            nextId = Math.max(...arr.map(r => r.id)) + 1;
+            for (const record of arr) {
+                display(record);
             }
-        } else {
-            console.log("db is undefined");
         }
     });
 }

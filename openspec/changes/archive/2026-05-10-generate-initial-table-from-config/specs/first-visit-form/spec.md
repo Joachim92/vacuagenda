@@ -1,15 +1,4 @@
-## Requirements
-
-### Requirement: Show setup form on first visit
-On first visit (no `vacuagenda_config` key in localStorage), the app SHALL display a setup form and hide the main table and add-row controls.
-
-#### Scenario: First visit with no config
-- **WHEN** the page loads and `vacuagenda_config` is not present in localStorage
-- **THEN** the setup form is visible and the table and add-row container are hidden
-
-#### Scenario: Returning visit with existing config
-- **WHEN** the page loads and `vacuagenda_config` is present in localStorage
-- **THEN** the setup form is hidden and the table and add-row container are shown normally
+## MODIFIED Requirements
 
 ### Requirement: Setup form collects 5 treatment fields
 The form SHALL include the following fields, all required:

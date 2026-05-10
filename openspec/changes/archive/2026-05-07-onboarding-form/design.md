@@ -35,9 +35,7 @@ Rationale: Lets the browser handle native validation (required fields, number ra
   name: string,
   time_between_shots: number,   // days
   initial_arm: string,          // "izquierdo" | "derecho"
-  initial_dose: number,
-  dose_increase: number,
-  last_dose: number,
+  dose: number,
   treatment_duration: number    // days or weeks — stored as entered
 }
 ```

@@ -25,14 +25,11 @@
                 <label for="initial_arm">Brazo de la primer vacuna</label>
                 <input type="text" id="initial_arm" name="initial_arm" value="Izquierdo" required>
 
-                <label for="initial_dose">Dosis inicial (mínima)</label>
-                <input type="number" id="initial_dose" name="initial_dose" step="any" value="10" required>
+                <label for="treatment_start_date">Inicio del tratamiento</label>
+                <input type="date" id="treatment_start_date" name="treatment_start_date" required>
 
-                <label for="dose_increase">¿Cuánto incrementa la dosis cada vez?</label>
-                <input type="number" id="dose_increase" name="dose_increase" step="any" value="10" required>
-
-                <label for="last_dose">Dosis final (máxima)</label>
-                <input type="number" id="last_dose" name="last_dose" step="any" value="50" required>
+                <label for="dose">Dosis (ml)</label>
+                <input type="number" id="dose" name="dose" step="any" value="50" required>
 
                 <label for="treatment_duration">Duración del tratamiento (días)</label>
                 <input type="number" id="treatment_duration" name="treatment_duration" min="1" value="365" required>
