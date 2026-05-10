@@ -157,6 +157,20 @@ tbody tr:hover {
     box-sizing: border-box;
 }
 
+#setup-form input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    text-align: left;
+    color: #000;
+    height: 35px;
+}
+
+#setup-form input[type="date"]::-webkit-date-and-time-value {
+    text-align: left;
+    color: #000;
+}
+
 #setup-form input:focus {
     outline: none;
     border-color: #036c5f;
