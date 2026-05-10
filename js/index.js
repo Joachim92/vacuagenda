@@ -268,7 +268,7 @@ request.addEventListener('success', () => {
         localStorage.removeItem('vacuagenda_config');
         location.reload();
     });
-    setupAutohide();
+    // setupAutohide();
     init();
 });
 

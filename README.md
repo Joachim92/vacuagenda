@@ -15,9 +15,9 @@ TODO:
 - DONE | Add a minus button at the bottom of the table and place it on the left side, prior to the `#add-row-btn` button. 
 Make both buttons slowly dissapear after a couple of seconds and show them again on hover. Make sure to dissapear them again after some time again.
 
-- DONe | Update table so it is displayed nicely in mobile
+- DONE | Update table so it is displayed nicely in mobile
 
-- The first time the user visits the website, display a form with these fields:
+- DONE | The first time the user visits the website, display a form with these fields:
   - [name]: Nombre
   - [time_between_shots]: Cada cuantos días te aplicas las vacunas? (semanal->7, mensual->30)
   - [initial_arm]: Brazo de la primer vacuna
@@ -25,8 +25,6 @@ Make both buttons slowly dissapear after a couple of seconds and show them again
   - [dose_increase]: Cuanto incrementa la dosis cada vez?
   - [last_dose]: Dosis final (maxima)
   - [treatment_duration]: Duracion del tratamiento
-- When the form is submmitted, The values must be saved in the javascript local storage as they will later be used to fill the initial table.
-- Log the values into the browser console
   
 - When clicking on `#add-row-btn` set the new row values as follow:
   - date: take the date of the previous row and add the 'time_between_shots' from the initial user values.
