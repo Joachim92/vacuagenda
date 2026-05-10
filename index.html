@@ -6,6 +6,7 @@
         <title>vacu-agenda</title>
         <link rel="icon" type="image/svg+xml" href="favicon.svg">
         <link rel="stylesheet" href="styles/style.css">
+        <link rel="apple-touch-icon" href="assets/iphone-icon.png">
         <script src="js/index.js" defer></script>
     </head>
 
@@ -19,22 +20,22 @@
                 <h2>Configuración inicial</h2>
 
                 <label for="name">Nombre</label>
-                <input type="text" id="name" name="name" value="Joaquin" required>
+                <input type="text" id="name" name="name" required>
 
                 <label for="time_between_shots">¿Cada cuántos días te aplicas las vacunas?</label>
-                <input type="number" id="time_between_shots" name="time_between_shots" min="1" value="7" required>
+                <input type="number" id="time_between_shots" name="time_between_shots" min="1" placeholder="7" required>
 
                 <label for="initial_arm">Brazo de la primer vacuna</label>
-                <input type="text" id="initial_arm" name="initial_arm" value="Izquierdo" required>
+                <input type="text" id="initial_arm" name="initial_arm" placeholder="Izquierdo" required>
 
                 <label for="treatment_start_date">Inicio del tratamiento</label>
                 <input type="date" id="treatment_start_date" name="treatment_start_date" required>
 
                 <label for="dose">Dosis (ml)</label>
-                <input type="number" id="dose" name="dose" step="any" value="50" required>
+                <input type="number" id="dose" name="dose" step="any" placeholder="50" required>
 
                 <label for="treatment_duration">Duración del tratamiento (días)</label>
-                <input type="number" id="treatment_duration" name="treatment_duration" min="1" value="365" required>
+                <input type="number" id="treatment_duration" name="treatment_duration" min="1" placeholder="365" required>
 
                 <button type="submit">Guardar</button>
             </form>

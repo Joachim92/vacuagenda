@@ -8,6 +8,11 @@ h1 {
     text-align: center;
 }
 
+#greeting {
+    display: none;
+    margin-left: 20px;
+}
+
 table {
     width: 100%;
     max-width: 800px;

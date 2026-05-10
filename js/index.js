@@ -7,6 +7,10 @@ function initSetupForm() {
     const addRowContainer = document.getElementById('add-row-container');
 
     if (localStorage.getItem('vacuagenda_config')) {
+        const config = JSON.parse(localStorage.getItem('vacuagenda_config'));
+        const greeting = document.getElementById('greeting');
+        greeting.innerHTML = 'Hola <strong>' + config.name + '</strong>!';
+        greeting.style.display = 'block';
         document.getElementById('table-tabs').style.display = 'flex';
         table.style.display = 'table';
         addRowContainer.style.display = 'flex';
@@ -29,6 +33,9 @@ function initSetupForm() {
             treatment_duration: Number(form.treatment_duration.value),
         };
         localStorage.setItem('vacuagenda_config', JSON.stringify(config));
+        const greeting = document.getElementById('greeting');
+        greeting.innerHTML = 'Hola <strong>' + config.name + '</strong>!';
+        greeting.style.display = 'block';
         generateInitialTable(config);
         formContainer.style.display = 'none';
         document.getElementById('table-tabs').style.display = 'flex';
