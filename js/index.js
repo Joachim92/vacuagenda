@@ -26,7 +26,6 @@ function initSetupForm() {
             treatment_duration: Number(form.treatment_duration.value),
         };
         localStorage.setItem('vacuagenda_config', JSON.stringify(config));
-        console.log('vacuagenda_config:', config);
         formContainer.style.display = 'none';
         table.style.display = 'table';
         addRowContainer.style.display = 'flex';
@@ -246,6 +245,7 @@ request.addEventListener('success', () => {
     document.getElementById('delete-row-btn').addEventListener('click', deleteRow);
     document.getElementById('shots_table').addEventListener('click', handleTableClick);
     document.getElementById('reset-btn').addEventListener('click', () => {
+        clearDb();
         localStorage.removeItem('vacuagenda_config');
         location.reload();
     });
