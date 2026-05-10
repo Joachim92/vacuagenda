@@ -177,6 +177,24 @@ tbody tr:hover {
     background-color: #024d44;
 }
 
+#reset-container {
+    text-align: center;
+    margin-top: 32px;
+}
+
+#reset-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#reset-btn:hover {
+    color: #666;
+}
+
 @media (max-width: 600px) {
     body {
         margin: 0;

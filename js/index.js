@@ -245,6 +245,10 @@ request.addEventListener('success', () => {
     document.getElementById('add-row-btn').addEventListener('click', addRow);
     document.getElementById('delete-row-btn').addEventListener('click', deleteRow);
     document.getElementById('shots_table').addEventListener('click', handleTableClick);
+    document.getElementById('reset-btn').addEventListener('click', () => {
+        localStorage.removeItem('vacuagenda_config');
+        location.reload();
+    });
     setupAutohide();
     init();
 });
