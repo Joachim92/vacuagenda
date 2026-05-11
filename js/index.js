@@ -306,8 +306,15 @@ function init() {
 }
 
 function generateICS(config, reminderTime) {
-    const count = Math.ceil(config.treatment_duration / config.time_between_shots);
-    const dtstart = config.treatment_start_date.replace(/-/g, '');
+    const totalCount = Math.ceil(config.treatment_duration / config.time_between_shots);
+    const start = new Date(config.treatment_start_date + 'T00:00:00');
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const msPerShot = config.time_between_shots * 24 * 60 * 60 * 1000;
+    const firstIndex = today <= start ? 0 : Math.ceil((today - start) / msPerShot);
+    const count = Math.max(0, totalCount - firstIndex);
+    const eventStart = new Date(start.getTime() + firstIndex * msPerShot);
+    const dtstart = eventStart.toISOString().slice(0, 10).replace(/-/g, '');
     const [hh, mm] = reminderTime.split(':').map(Number);
     const trigger = mm === 0 ? `PT${hh}H` : `PT${hh}H${mm}M`;
 
