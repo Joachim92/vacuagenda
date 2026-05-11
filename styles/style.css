@@ -190,7 +190,8 @@ tr.missed td {
     margin-top: 0;
 }
 
-#setup-form input {
+#setup-form input,
+#setup-form select {
     display: block;
     width: 100%;
     padding: 8px 10px;
@@ -199,15 +200,15 @@ tr.missed td {
     font-family: inherit;
     font-size: 14px;
     box-sizing: border-box;
+    background-color: #fff;
+    height: 35px;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 #setup-form input[type="date"] {
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: #fff;
     text-align: left;
     color: #000;
-    height: 35px;
 }
 
 #setup-form input[type="date"]::-webkit-date-and-time-value {
@@ -215,7 +216,8 @@ tr.missed td {
     color: #000;
 }
 
-#setup-form input:focus {
+#setup-form input:focus,
+#setup-form select:focus {
     outline: none;
     border-color: #036c5f;
 }
