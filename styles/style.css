@@ -199,6 +199,7 @@ tr.missed td {
     border-radius: 4px;
     font-family: inherit;
     font-size: 14px;
+    color: inherit;
     box-sizing: border-box;
     height: 35px;
     background-color: #fff;
