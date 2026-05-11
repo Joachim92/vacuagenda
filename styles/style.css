@@ -120,7 +120,8 @@ tr.missed td {
 #applied_shots_table,
 #table-tabs,
 #add-row-container,
-#reset-container {
+#reset-container,
+#reminder-container {
     display: none;
 }
 
@@ -246,6 +247,45 @@ tr.missed td {
 #reset-container {
     text-align: center;
     margin-top: 32px;
+}
+
+#reminder-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    max-width: 800px;
+    margin: 16px auto 0;
+    flex-wrap: wrap;
+}
+
+#reminder-container label {
+    font-size: 14px;
+    color: #555;
+}
+
+#reminder-time {
+    font-size: 14px;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    height: 32px;
+}
+
+#export-calendar-btn {
+    padding: 6px 14px;
+    background-color: #036c5f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+#export-calendar-btn:hover {
+    background-color: #024d44;
 }
 
 #reset-btn {

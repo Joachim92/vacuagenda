@@ -15,6 +15,7 @@ function initSetupForm() {
         table.style.display = 'table';
         addRowContainer.style.display = 'flex';
         document.getElementById('reset-container').style.display = 'block';
+        document.getElementById('reminder-container').style.display = 'flex';
         return;
     }
 
@@ -42,6 +43,7 @@ function initSetupForm() {
         table.style.display = 'table';
         addRowContainer.style.display = 'flex';
         document.getElementById('reset-container').style.display = 'block';
+        document.getElementById('reminder-container').style.display = 'flex';
     });
 }
 
@@ -301,6 +303,32 @@ function init() {
     });
 }
 
+function generateICS(config, reminderTime) {
+    const count = Math.ceil(config.treatment_duration / config.time_between_shots);
+    const dtstart = config.treatment_start_date.replace(/-/g, '');
+    const [hh, mm] = reminderTime.split(':').map(Number);
+    const trigger = mm === 0 ? `PT${hh}H` : `PT${hh}H${mm}M`;
+
+    return [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//VacuAgenda//vacuagenda//ES',
+        'BEGIN:VEVENT',
+        'UID:vacuagenda-treatment@vacuagenda',
+        `DTSTART;VALUE=DATE:${dtstart}`,
+        `RRULE:FREQ=DAILY;INTERVAL=${config.time_between_shots};COUNT=${count}`,
+        `SUMMARY:💉 Vacuna - ${config.dose}ml`,
+        'DESCRIPTION:El brazo alterna entre Izquierdo y Derecho.',
+        'BEGIN:VALARM',
+        `TRIGGER:${trigger}`,
+        'ACTION:DISPLAY',
+        'DESCRIPTION:Recordatorio: vacuna hoy',
+        'END:VALARM',
+        'END:VEVENT',
+        'END:VCALENDAR',
+    ].join('\r\n');
+}
+
 const request = window.indexedDB.open('shots_db', 1);
 
 request.addEventListener('error', () => console.error('Database failed to open'));
@@ -320,8 +348,8 @@ request.addEventListener('success', () => {
     const appliedTable = document.getElementById('applied_shots_table');
 
     const addRowContainer = document.getElementById('add-row-container');
-
     const resetContainer = document.getElementById('reset-container');
+    const reminderContainer = document.getElementById('reminder-container');
 
     tabPending.addEventListener('click', () => {
         tabPending.classList.add('active');
@@ -330,6 +358,7 @@ request.addEventListener('success', () => {
         appliedTable.style.display = 'none';
         addRowContainer.style.display = 'flex';
         resetContainer.style.display = 'block';
+        if (localStorage.getItem('vacuagenda_config')) reminderContainer.style.display = 'flex';
     });
 
     tabApplied.addEventListener('click', () => {
@@ -339,7 +368,27 @@ request.addEventListener('success', () => {
         pendingTable.style.display = 'none';
         addRowContainer.style.display = 'none';
         resetContainer.style.display = 'none';
+        reminderContainer.style.display = 'none';
     });
+    const reminderTimeInput = document.getElementById('reminder-time');
+    reminderTimeInput.value = localStorage.getItem('vacuagenda_reminder_time') || '08:00';
+    reminderTimeInput.addEventListener('change', () => {
+        localStorage.setItem('vacuagenda_reminder_time', reminderTimeInput.value);
+    });
+
+    document.getElementById('export-calendar-btn').addEventListener('click', () => {
+        const config = JSON.parse(localStorage.getItem('vacuagenda_config'));
+        const reminderTime = localStorage.getItem('vacuagenda_reminder_time') || '08:00';
+        const ics = generateICS(config, reminderTime);
+        const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'vacuagenda.ics';
+        a.click();
+        URL.revokeObjectURL(url);
+    });
+
     const resetModal = document.getElementById('reset-modal');
     document.getElementById('reset-btn').addEventListener('click', () => {
         resetModal.classList.add('open');
