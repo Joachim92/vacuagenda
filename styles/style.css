@@ -123,10 +123,12 @@ tr.missed td {
 #reset-container,
 #reminder-container {
     display: none;
+    justify-content: center;
 }
 
 #table-tabs {
     display: none;
+    justify-content: flex-start;
     max-width: 800px;
     margin: 20px auto 0;
     gap: 0;
@@ -271,6 +273,7 @@ tr.missed td {
     font-size: 14px;
     cursor: pointer;
     font-family: inherit;
+    margin-top: 10px;
 }
 
 #export-calendar-btn:hover {
