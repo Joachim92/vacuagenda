@@ -200,13 +200,18 @@ tr.missed td {
     font-family: inherit;
     font-size: 14px;
     box-sizing: border-box;
-    background-color: #fff;
     height: 35px;
+    background-color: #fff;
+}
+
+#setup-form select {
     -webkit-appearance: none;
     appearance: none;
 }
 
 #setup-form input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
     text-align: left;
     color: #000;
 }
