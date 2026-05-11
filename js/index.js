@@ -43,6 +43,7 @@ function initSetupForm() {
         addRowContainer.style.display = 'flex';
         document.getElementById('reset-container').style.display = 'block';
         document.getElementById('reminder-container').style.display = 'flex';
+        document.getElementById('reset-placeholder').style.display = 'block';
     });
 }
 
@@ -299,6 +300,7 @@ function init() {
                 display(record);
             }
             document.getElementById('reminder-container').style.display = 'flex';
+            document.getElementById('reset-placeholder').style.display = 'block';
         }
     });
 }
@@ -358,7 +360,10 @@ request.addEventListener('success', () => {
         appliedTable.style.display = 'none';
         addRowContainer.style.display = 'flex';
         resetContainer.style.display = 'block';
-        if (localStorage.getItem('vacuagenda_config')) reminderContainer.style.display = 'flex';
+        if (localStorage.getItem('vacuagenda_config')) {
+            reminderContainer.style.display = 'flex';
+            document.getElementById('reset-placeholder').style.display = 'block';
+        }
     });
 
     tabApplied.addEventListener('click', () => {
@@ -369,6 +374,7 @@ request.addEventListener('success', () => {
         addRowContainer.style.display = 'none';
         resetContainer.style.display = 'none';
         reminderContainer.style.display = 'none';
+        document.getElementById('reset-placeholder').style.display = 'none';
     });
     document.getElementById('export-calendar-btn').addEventListener('click', () => {
         const config = JSON.parse(localStorage.getItem('vacuagenda_config'));

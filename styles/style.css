@@ -247,6 +247,7 @@ tr.missed td {
 }
 
 #reset-placeholder {
+    display: none;
     min-height: 100vh;
     margin-top: 40px;
 }
