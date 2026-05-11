@@ -15,7 +15,6 @@ function initSetupForm() {
         table.style.display = 'table';
         addRowContainer.style.display = 'flex';
         document.getElementById('reset-container').style.display = 'block';
-        document.getElementById('reminder-container').style.display = 'flex';
         return;
     }
 
@@ -299,6 +298,7 @@ function init() {
             for (const record of arr) {
                 display(record);
             }
+            document.getElementById('reminder-container').style.display = 'flex';
         }
     });
 }

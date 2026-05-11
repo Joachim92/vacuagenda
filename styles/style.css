@@ -246,11 +246,15 @@ tr.missed td {
 
 #reset-placeholder {
     min-height: 100vh;
+    margin-top: 40px;
 }
 
 #reset-container {
     text-align: center;
-    margin-top: 32px;
+    margin: 0 auto 40px;
+    max-width: 800px;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 #reminder-container {
