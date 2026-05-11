@@ -3,7 +3,7 @@
 - [x] 1.1 Add `#reminder-container` to `index.html` below `#reset-container`, containing a label, `#reminder-time` time input, and `#export-calendar-btn` button ("Añadir al calendario")
 - [x] 1.2 Add `#reminder-container` to the CSS default-hidden group; add layout styles for the section
 - [x] 1.3 Show `#reminder-container` alongside `#reset-container` on returning visit and after form submit; hide it on the "Aplicadas" tab, show it on "Pendientes"
-- [x] 1.4 On page load, restore `#reminder-time` from `localStorage` key `vacuagenda_reminder_time` (default `"08:00"`); wire change handler to save updated value
+- [x] 1.4 Reminder time hardcoded to `"08:00"` (user adjusts in iOS Calendar after import; no picker needed)
 
 ## 2. ICS Generation
 

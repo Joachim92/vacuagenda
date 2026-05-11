@@ -370,16 +370,9 @@ request.addEventListener('success', () => {
         resetContainer.style.display = 'none';
         reminderContainer.style.display = 'none';
     });
-    const reminderTimeInput = document.getElementById('reminder-time');
-    reminderTimeInput.value = localStorage.getItem('vacuagenda_reminder_time') || '08:00';
-    reminderTimeInput.addEventListener('change', () => {
-        localStorage.setItem('vacuagenda_reminder_time', reminderTimeInput.value);
-    });
-
     document.getElementById('export-calendar-btn').addEventListener('click', () => {
         const config = JSON.parse(localStorage.getItem('vacuagenda_config'));
-        const reminderTime = localStorage.getItem('vacuagenda_reminder_time') || '08:00';
-        const ics = generateICS(config, reminderTime);
+        const ics = generateICS(config, '08:00');
         const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');

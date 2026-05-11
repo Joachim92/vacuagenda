@@ -244,33 +244,18 @@ tr.missed td {
     background-color: #024d44;
 }
 
+#reset-placeholder {
+    min-height: 100vh;
+}
+
 #reset-container {
     text-align: center;
     margin-top: 32px;
 }
 
 #reminder-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    max-width: 800px;
-    margin: 16px auto 0;
-    flex-wrap: wrap;
-}
-
-#reminder-container label {
-    font-size: 14px;
-    color: #555;
-}
-
-#reminder-time {
-    font-size: 14px;
-    padding: 4px 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-family: inherit;
-    height: 32px;
+    text-align: center;
+    margin-top: 16px;
 }
 
 #export-calendar-btn {
