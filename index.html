@@ -26,7 +26,10 @@
                 <input type="number" id="time_between_shots" name="time_between_shots" min="1" placeholder="7" required>
 
                 <label for="initial_arm">Brazo de la primer vacuna</label>
-                <input type="text" id="initial_arm" name="initial_arm" placeholder="Izquierdo" required>
+                <select id="initial_arm" name="initial_arm" required>
+                    <option value="Izquierdo">Izquierdo</option>
+                    <option value="Derecho">Derecho</option>
+                </select>
 
                 <label for="treatment_start_date">Inicio del tratamiento</label>
                 <input type="date" id="treatment_start_date" name="treatment_start_date" required>

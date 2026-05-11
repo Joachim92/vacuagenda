@@ -142,18 +142,32 @@ function display(rowObj) {
 }
 
 function startEdit(cell, id, col) {
-    if (cell.querySelector('input')) return;
+    if (cell.querySelector('input, select')) return;
 
     const originalValue = cell.textContent;
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.value = originalValue;
-    input.className = 'cell-edit-input';
+    let input;
+
+    if (col === 'arm') {
+        input = document.createElement('select');
+        input.className = 'cell-edit-input';
+        ['Izquierdo', 'Derecho'].forEach(opt => {
+            const option = document.createElement('option');
+            option.value = opt;
+            option.textContent = opt;
+            if (opt === originalValue) option.selected = true;
+            input.appendChild(option);
+        });
+    } else {
+        input = document.createElement('input');
+        input.type = 'text';
+        input.value = originalValue;
+        input.className = 'cell-edit-input';
+    }
 
     cell.textContent = '';
     cell.appendChild(input);
     input.focus();
-    input.select();
+    if (input.select) input.select();
 
     let committed = false;
 
@@ -181,6 +195,7 @@ function startEdit(cell, id, col) {
     });
 
     input.addEventListener('blur', commit);
+    if (col === 'arm') input.addEventListener('change', commit);
 }
 
 function insertRowSorted(tbody, row) {
