@@ -320,7 +320,7 @@ function generateICS(config, reminderTime) {
         `DTSTART;VALUE=DATE:${dtstart}`,
         `RRULE:FREQ=DAILY;INTERVAL=${config.time_between_shots};COUNT=${count}`,
         `SUMMARY:💉 Vacuna - ${config.dose}ml`,
-        'DESCRIPTION:El brazo alterna entre Izquierdo y Derecho.',
+        'DESCRIPTION:¡Día de vacuna! Entra a vacu-agenda para ver el brazo en turno y registralo en la app.',
         'BEGIN:VALARM',
         `TRIGGER:${trigger}`,
         'ACTION:DISPLAY',
